@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'django_bootstrap5',
+    'faker',
 ]
 
 MIDDLEWARE = [
