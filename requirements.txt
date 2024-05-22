@@ -1,3 +1,6 @@
 # Django framework
 django~=4.2.3
 django-bootstrap5>=24.2
+
+python3 manage.py makemigrations users
+python3 manage.py migrate
