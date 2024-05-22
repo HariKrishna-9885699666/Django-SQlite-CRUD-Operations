@@ -27,4 +27,4 @@ def create_random_users(n):
 
 if __name__ == "__main__":
     create_random_users(1000)
-    print("100 random users created successfully!")
+    print("1000 random users created successfully!")

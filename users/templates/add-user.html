@@ -1,0 +1,59 @@
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Django - SQlite CRUD Operations - Add user</title>
+    {% bootstrap_css %}
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="d-flex justify-content-between mb-3">
+        <a href="/users" class="btn btn-secondary">
+          <i class="bi bi-arrow-left"></i> Back
+        </a>
+      </div>
+      <h2>Add user</h2>
+      {% if messages %}
+        {% for msg in messages %}
+            <p class="text-success">{{msg}}</p>
+        {% endfor %}
+      {% endif %}
+      <form method="post" action="/users/add/" novalidate autocomplete="off">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <!-- <form method="post" action="/users/add/">
+        {% csrf_token %}
+        <div class="mb-3 w-25">
+            <label for="firstname" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstname" name="first_name" placeholder="Enter first name">
+        </div>
+
+        <div class="mb-3 w-25">
+            <label for="lastname" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastname" name="last_name" placeholder="Enter last name">
+          </div>
+      
+        <div class="mb-3 w-25">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone number">
+        </div>
+      
+        <div class="mb-3 w-25">
+          <label for="joined_date" class="form-label">Date of Joining</label>
+          <input type="date" class="form-control" id="joined_date" name="joined_date">
+        </div>
+      
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form> -->
+      
+    </div>
+
+    {% block header %}
+        {% include "floating-icon.html" %}
+    {% endblock %}
+
+    {% bootstrap_javascript %}
+  </body>
+</html>
