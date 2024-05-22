@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-4b)(+8p6=ib%&31@3k_tnih4@!3-wt6grce=e^4g76&jmrg-d=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-sqlite-crud-operations.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
