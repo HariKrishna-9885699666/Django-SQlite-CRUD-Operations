@@ -13,8 +13,12 @@ def main():
         from django.core.management import execute_from_command_line
 
         # Set default port if not already set
-        port = os.getenv('PORT', 8000)
-        sys.argv += ['runserver', '0.0.0.0:' + str(port)]
+        # Read the PORT from the environment variable
+        port = os.environ.get('PORT', '8000')
+        
+        # Only append 'runserver' and the port if it's not already in sys.argv
+        if 'runserver' not in sys.argv:
+            sys.argv += ['runserver', '0.0.0.0:' + port]
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
