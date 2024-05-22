@@ -11,6 +11,10 @@ def main():
     os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
     try:
         from django.core.management import execute_from_command_line
+
+        # Set default port if not already set
+        port = os.getenv('PORT', 8000)
+        sys.argv += ['runserver', '0.0.0.0:' + str(port)]
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
