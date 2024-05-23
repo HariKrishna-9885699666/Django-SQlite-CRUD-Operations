@@ -20,7 +20,15 @@ def change_date(date_str):
     return date.strftime("%B %d, %Y")
 
 
-def users(request):
+def users(request, user_id=None):
+  if user_id:
+      try:
+          user = User.objects.get(pk=user_id)
+          user.delete()
+          messages.success(request, 'User deleted successfully.')
+      except User.DoesNotExist:
+          messages.error(request, "The user you are trying to edit does not exist.")
+
   allUsers = User.objects.all().values().order_by('-id')
   template = loader.get_template('landing-page.html')
   context = {
@@ -103,3 +111,5 @@ def editUser(request, user_id=None):
        'user_url': f"/users/edit/{user_id}/"
     }
     return HttpResponse(template.render(context, request))
+  
+        

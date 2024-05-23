@@ -1,15 +1,31 @@
 {% load django_bootstrap5 %}
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Django - SQlite CRUD Operations - All users</title>
+    <title>Django - SQLite CRUD Operations - All users</title>
     {% bootstrap_css %}
   </head>
   <body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-white" style="display: flex;justify-content: center;">
+      <a class="navbar-brand" href="/users">
+        <img src="{% static 'assets/images/django-logo-positive.png' %}" width="200" height="75" class="d-inline-block align-top" alt="django">
+        <img src="{% static 'assets/images/sqlite370_banner.gif' %}" width="200" height="75" class="d-inline-block align-top" alt="sqlite">
+        <img src="{% static 'assets/images/crud.png' %}" width="200" height="75" class="d-inline-block align-top" alt="crud">
+      </a>
+    </nav>
     <div class="container mt-5">
       <div class="row align-items-center mb-3">
+        {% if messages %}
+          {% for msg in messages %}
+            <p class="text-{% if msg.tags == 'success' %}success{% else %}danger{% endif %}">{{ msg }}</p>
+          {% endfor %}
+        {% endif %}
         <div class="col-6">
-          <h2>User List</h2>
+          <h2>
+            <a href="/users" style="text-decoration: underline; color: inherit;" onclick="event.preventDefault(); window.location.href='/users/';">User List</a>
+          </h2>
         </div>
         <div class="col-6 text-end">
           <a href="/users/add" class="btn btn-success">
@@ -38,7 +54,7 @@
               <a href="/users/edit/{{user.id}}" class="btn btn-sm btn-outline-primary">
                 <i class="bi bi-pencil"></i> Edit
               </a>
-              <a href="#" class="btn btn-sm btn-outline-danger">
+              <a href="#" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-user-id="{{ user.id }}" data-user-name="{{ user.firstname }}">
                 <i class="bi bi-trash"></i> Delete
               </a>
             </td>
@@ -48,10 +64,42 @@
       </table>
     </div>
 
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete <span id="userName" style="font-weight: bold;"></span>?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <a href="#" class="btn btn-danger" id="confirmDeleteButton">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     {% block header %}
         {% include "floating-icon.html" %}
     {% endblock %}
 
     {% bootstrap_javascript %}
+    <script>
+      var deleteModal = document.getElementById('deleteModal')
+      deleteModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        var userId = button.getAttribute('data-user-id')
+        var userName = button.getAttribute('data-user-name')
+
+        var modalBody = deleteModal.querySelector('.modal-body #userName')
+        modalBody.textContent = userName
+
+        var confirmDeleteButton = deleteModal.querySelector('#confirmDeleteButton')
+        confirmDeleteButton.href = "/users/delete/" + userId + "/";
+      })
+    </script>
   </body>
 </html>
