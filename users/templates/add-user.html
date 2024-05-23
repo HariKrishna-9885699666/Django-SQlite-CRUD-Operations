@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Django - SQlite CRUD Operations - Add user</title>
+    <title>Django - SQlite CRUD Operations - {{ is_edit_mode|yesno:"Edit User,Add User" }}</title>
     {% bootstrap_css %}
   </head>
   <body>
@@ -12,42 +12,17 @@
           <i class="bi bi-arrow-left"></i> Back
         </a>
       </div>
-      <h2>Add user</h2>
+      <h2>{{ is_edit_mode|yesno:"Edit User,Add User" }}</h2>
       {% if messages %}
         {% for msg in messages %}
-            <p class="text-success">{{msg}}</p>
+          <p class="text-{% if msg.tags == 'success' %}success{% else %}danger{% endif %}">{{ msg }}</p>
         {% endfor %}
       {% endif %}
-      <form method="post" action="/users/add/" novalidate autocomplete="off">
+      <form method="post" action="{{user_url}}" novalidate autocomplete="off">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">{{ is_edit_mode|yesno:"Update,Submit" }}</button>
       </form>
-      <!-- <form method="post" action="/users/add/">
-        {% csrf_token %}
-        <div class="mb-3 w-25">
-            <label for="firstname" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="firstname" name="first_name" placeholder="Enter first name">
-        </div>
-
-        <div class="mb-3 w-25">
-            <label for="lastname" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="lastname" name="last_name" placeholder="Enter last name">
-          </div>
-      
-        <div class="mb-3 w-25">
-          <label for="phone" class="form-label">Phone Number</label>
-          <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone number">
-        </div>
-      
-        <div class="mb-3 w-25">
-          <label for="joined_date" class="form-label">Date of Joining</label>
-          <input type="date" class="form-control" id="joined_date" name="joined_date">
-        </div>
-      
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form> -->
-      
     </div>
 
     {% block header %}
