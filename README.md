@@ -1,5 +1,5 @@
 # Django-SQLite-CRUD-Operations
-Django - SQLite CRUD Operations
+Django - SQLite User Management
 
 ```bash
 python3 manage.py makemigrations users
