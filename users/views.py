@@ -50,25 +50,6 @@ def addUser(request):
         return redirect('addUser')
     else:
       form = UserForm()
-
-    template = loader.get_template('add-user.html')
-    context = {'form': form}
-    return HttpResponse(template.render(context, request))
-
-def addUser(request):
-    if request.method == 'POST':
-      form = UserForm(request.POST)
-      if form.is_valid():
-        firstname = request.POST['first_name']
-        lastname = request.POST['last_name']
-        phone = request.POST['phone']
-        joined_date = request.POST['joined_date']
-
-        User.objects.create(firstname=firstname, lastname=lastname, phone=phone, joined_date=joined_date)
-        messages.success(request, "User created successfully.")
-        return redirect('addUser')
-    else:
-      form = UserForm()
       
     template = loader.get_template('add-user.html')
     context = {
