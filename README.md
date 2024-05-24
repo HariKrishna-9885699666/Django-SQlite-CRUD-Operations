@@ -13,7 +13,7 @@ python3 manage.py runserver 7000
 python3 manage.py startapp users
 ```
 - In VSCODE, view > command pallette > Then type Python: Select Interpreter. Then select pipenv related path.
-- Update INSTALLED_APPS with "todoplayground" in settings.py
+- Update INSTALLED_APPS with "storefront" in settings.py
 
 ```
 pipenv install faker
