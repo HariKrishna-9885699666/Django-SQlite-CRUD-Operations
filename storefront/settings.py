@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4b)(+8p6=ib%&31@3k_tnih4@!3-wt6grce=e^4g76&jmrg-d='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'django-sqlite-crud-operations.onrender.com',
