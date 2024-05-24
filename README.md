@@ -16,8 +16,8 @@ python3 manage.py startapp users
 - Update INSTALLED_APPS with "todoplayground" in settings.py
 
 ```
-pip install faker
-pip install django-bootstrap5
+pipenv install faker
+pipenv install django-bootstrap5
 ```
 - Update INSTALLED_APPS with "faker" and "django-bootstrap5" in settings.py
 
