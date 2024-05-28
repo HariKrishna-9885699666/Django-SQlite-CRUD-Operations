@@ -1,6 +1,10 @@
 # Django-SQLite-CRUD-Operations
 Django - SQLite User Management
 
+## Live Demo
+
+You can check out the live demo of the application here: [User Management Demo](https://django-sqlite-crud-operations.onrender.com/)
+
 ## Installation
 
 ```bash
